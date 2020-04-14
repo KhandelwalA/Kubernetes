@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-replicaset
+  labels:
+    name: frontend-replicaset
+    tier: frontend
+spec:
+  template:
+    metadata:
+      name: my-pod-config
+      labels:
+        name: frontend-pod
+        tier: presentation
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          env:
+            - name: password
+              value: mysecretpassword
+  replicas: 3
+  selector:
+    matchLabels:
+      name: frontend-pod
