@@ -14,4 +14,3 @@ spec:
       env:
         - name: password
           value: mysecretpassword
-
